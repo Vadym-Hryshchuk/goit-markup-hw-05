@@ -20,11 +20,11 @@ body {
 /* Header section */
 .header {
   border: 1px solid rgba(236, 236, 236, 1);
-  /* padding-top: 25px;
-  padding-bottom: 25px; */
+  height: 80px;
 }
 .header .container {
   display: flex;
+  height: 100%;
 }
 .navigation {
   display: flex;
@@ -51,27 +51,27 @@ body {
   margin: 0;
   padding: 0;
   align-items: center;
+  height: 100%;
 }
 .nav-link {
   position: relative;
-  display: inline-block;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  height: 80px;
+
   font-weight: 500;
   font-size: 14px;
   line-height: 1.143;
   letter-spacing: 0.02em;
-
   color: var(--primary-title-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   text-decoration: none;
-
-  outline: 1px solid red;
 }
-.nav-link.current::before {
+.nav-link.current::after {
   position: absolute;
   bottom: 0;
-  left: 0;
+
   content: "";
   display: block;
   width: 100%;
@@ -109,7 +109,7 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  outline: 1px solid red;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-link:hover,
 .nav-link:focus,
@@ -159,6 +159,7 @@ body {
 
   background-color: var(--hover-color);
   color: var(--white-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   font-size: 16px;
   line-height: 1.875;
@@ -237,7 +238,29 @@ body {
   line-height: 1.714;
   letter-spacing: 0.03em;
 }
+/* Our work */
+.work-item {
+  position: relative;
+  height: 294px;
+}
+.work-item .name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  margin: 0;
+  padding: 27px 0;
 
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.143;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: rgba(47, 48, 58, 0.8);
+}
 /* Our team */
 .s-background {
   background: #f5f4fa;
@@ -296,6 +319,9 @@ body {
 
   text-decoration: none;
   fill: rgba(175, 177, 184, 1);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link:hover,
 .social-link:focus {
@@ -326,6 +352,8 @@ body {
   fill: rgba(175, 177, 184, 1);
   width: 100%;
   height: 100%;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .customers-link:hover,
 .customers-link:focus {
@@ -380,6 +408,7 @@ body {
   text-decoration: none;
 
   color: rgba(255, 255, 255, 0.6);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address .footer-link:hover,
 .address .footer-link:focus {
@@ -421,6 +450,9 @@ body {
   justify-content: center;
   align-items: center;
   fill: var(--white-color);
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-sign-link:hover,
 .social-sign-link:focus {
@@ -441,6 +473,14 @@ body {
 
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
 }
 .modal {
   position: absolute;
@@ -474,14 +514,7 @@ body {
   background-position: center;
   cursor: pointer;
 }
-.backdrop.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0;
-}
+
 /* Portfolio */
 
 .filter-list {
@@ -510,6 +543,9 @@ body {
   letter-spacing: 0.03em;
   border: 0;
   cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-list .all {
   background-color: var(--hover-color);
@@ -536,7 +572,7 @@ body {
   border: 1px solid #eeeeee;
   overflow: hidden;
 }
-.project-list .item:hover {
+.project-list > .item:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
@@ -549,6 +585,38 @@ body {
 .project-link {
   text-decoration: none;
   color: inherit;
+
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.tumb {
+  position: relative;
+  width: 100%;
+  height: 294px;
+  display: inline-block;
+  overflow: hidden;
+}
+.text-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  margin: 0;
+  padding: 63px 24px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.556;
+  letter-spacing: 0.03em;
+
+  color: #ffffff;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-link:hover .text-overlay {
+  transform: translateY(0);
 }
 
 .cards-description {
